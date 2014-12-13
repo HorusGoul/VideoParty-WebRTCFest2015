@@ -1,0 +1,114 @@
+{
+    "spanish_es" : {
+        "register" : {
+            "desc" : [
+                "Bienvenido a Video Party, para comenzar a usar la aplicacion requerimos de tu registro, asi nos aseguraremos de que tu usuario es unico.",
+                "Asegurate de no olvidar tu codigo secreto, se utiliza para recuperar tu usuario en caso de desconexion o para conectarte desde otro dispositivo.",
+                "Puedes escoger tu avatar y escribir una pequeña biografia (maximo 512 caracteres)."
+            ],
+            "placeholder" : [
+                "Usuario",
+                "Codigo secreto",
+                "http://ejemplo.com/avatar.png",
+                "Desde hace muchos años..."
+            ],
+            "basic" : [
+                "Biografía por defecto."   
+            ]
+        },
+        "messages" : {
+            "form" : {
+                "placeholder" : "Escribe tu mensaje..."   
+                },
+            "basic" : {
+                "title" : "Chat",
+                "me" : "Yo"   
+            }
+        },
+        "contacts" : {
+            "basic" : {
+                "title" : "Contactos"   
+            },
+            "form" : {
+                "placeholder" : "Buscar a un contacto..."   
+            }
+        },
+        "profile" : {
+            "basic" : {
+                "title" : "Perfil"   
+            },
+            "title" : [
+                "Biografía"   
+            ]
+        },
+        "menu" : {
+            "button" : [
+                "Inicio",
+                "Conectar",
+                "Contactos",
+                "Perfil",
+                "Opciones"
+            ]
+        },
+        "optionsmodal" : {
+            "basic" : {
+                "cancel" : "Cancelar",
+                "contactadd" : "Añadir a contactos",
+                "contactremove" : "Eliminar contacto",
+                "profileview" : "Ver su perfil",
+                "editprofile" : "Editar perfil",
+                "ok" : "Aceptar"
+            }
+        },
+        "modal" : {
+            "basic" : {
+                "cancel" : "Cancelar",
+                "ok" : "Aceptar"
+            },
+            "connect" : {
+                "title" : "Conectarse a un usuario",
+                "desc" : "Para conectarse a un usuario debera proporcionarnos su \"Peer ID\" y su contraseña.",
+                "placeholder" : [
+                    "Peer id",
+                    "Contraseña (videoparty)"
+                ]
+            },
+            "addcontact" : {
+                "title" : "Nuevo contacto",
+                "desc" : [
+                    "¿Como quieres nombrar al contacto?",
+                    "¿Cual es su \"Peer ID\"?"
+                ],
+                "placeholder" : [
+                    "Nombre",
+                    "Peer ID"
+                ]
+            },
+            "editprofile" : {
+                "title" : "Editar perfil",
+                "desc" : [
+                    "Biografía",
+                    "Editar avatar"
+                ]
+            },
+            "youtube" : {
+                "title" : "URL del video",
+                "placeholder" : [
+                    "https://www.youtube.com/watch?v=-7n3L-XOVuA"   
+                ],
+                "button" : "Ver video"
+            }
+        },
+        "notify" : {
+            "onvideo" : {
+                "title" : "¿Te apuntas?",
+                "desc" : "Estan viendo un video, ¿quieres verlo tu tambien?"
+            }
+        },
+        "inchat" : {
+            "basic" : {
+                "title" : "Conectados"   
+            }
+        }
+    }
+}

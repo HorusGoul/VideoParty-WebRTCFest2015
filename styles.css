@@ -1,0 +1,737 @@
+/* STYLES PLAY WITH ME */
+
+html {
+    margin: 0;
+}
+body {
+    margin: 0;
+    background: #FFF;
+    font-family: DroidSans;
+    color: #25271E;
+}
+@font-face {
+    font-family: DroidSans;
+    src: url(fonts/DroidSans.woff);
+}
+button {
+    background: #bcde73;
+    font-family: DroidSans;
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    font-weight: 500;
+    /*    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.43);*/
+    cursor: pointer;
+}
+button:focus,
+input:focus,
+textarea:focus,
+link:focus {
+    outline: none;
+}
+#header {
+    background: #a872d3;
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.center {
+    width: calc(100% - (38px + 26px + 2px + 49px));
+    height: 50px;
+}
+#chevronleft {
+    float: left;
+    fill: white;
+    opacity: 0.2;
+    height: 100%;
+    margin-left: -6px;
+    display: none;
+}
+#headertitle button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    cursor: inherit;
+}
+#headertitle button.clicable {
+    background: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+#logo {
+    background: url(images/icons/logo2.png) no-repeat;
+    height: 34px;
+    width: 38px;
+    margin: 10px 13px 6px 13px;
+    background-size: contain;
+}
+#separator {
+    height: 40px;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    float: left;
+}
+#container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -62px;
+    margin-left: -62px;
+    width: 124px;
+    height: 124px;
+    background: url(images/background/logobg.png);
+    z-index: -1;
+}
+#default-message {
+    color: #FFF;
+    text-shadow: -1px -1px rgba(0, 0, 0, 0.5);
+    font-size: 40px;
+}
+#menu {
+    background: url(images/icons/svg/menu.svg) no-repeat;
+    background-size: 100% 100%;
+    height: 48px;
+    width: 48px;
+    margin: 1px;
+    opacity: 0.35;
+}
+#menu-container {
+    background: rgba(67, 67, 67, 0.7);
+    border-left: 2px rgba(255, 255, 255, 0.35) solid;
+    width: 138px;
+    height: calc(100% - 50px);
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    z-index: 1;
+}
+#menu-fill {
+    height: 60px;
+}
+#chat-fill {
+    height: 10px;
+}
+#yt-container {
+    display: none;
+    position: absolute;  
+    top: 50;
+    width: 100%;
+}
+#next-video {
+    width: 100%;
+}
+#id {
+    color: #FFF;
+    width: 100%;
+    background: #a872d3;
+    position: absolute;
+    bottom: 0;
+}
+#menu-container button {
+    width: 100%;
+    color: #ffffff;
+    font: 400 16px DroidSans;
+    background: transparent;
+    text-align: left;
+    padding-left: 15px;
+}
+button#connect .icon {
+    -webkit-mask-image: url(images/icons/svg/connect.svg);
+}
+button#contactsbtn .icon {
+    -webkit-mask-image: url(images/icons/svg/contacts.svg);
+}
+button#profilebtn .icon {
+    -webkit-mask-image: url(images/icons/svg/profile.svg);
+}
+button#settingsbtn .icon {
+    -webkit-mask-image: url(images/icons/svg/settings.svg);
+}
+button#index .icon {
+    -webkit-mask-image: url(images/icons/svg/home.svg);
+}
+button .icon {
+    float: right;
+    background-color: white;
+    height: 24px;
+    width: 24px;
+    -webkit-mask-repeat: no-repeat;
+}
+button .left {
+    margin-top: 2.5px;
+}
+#yt-container iframe {
+    background: #646d55;
+}
+#messages {
+    overflow: auto;
+    height: calc(100vh - 102px);
+    margin-top: 50px;
+    display: none;
+    
+}
+#message {
+    background: rgba(0, 0, 0, 0.1);
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#author {
+    color: #954ace;
+    font: 400 16px DroidSans;
+    float: left;
+}
+#time {
+    float: right;
+}
+#messages-form {
+    position: absolute;
+    border: 0;
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    color: rgba(63, 69, 54, 0.6);
+    display: none;
+    background: #a872d3;
+}
+#text-message {
+    height: 40px;
+    border: 0;
+    width: calc(100% - 16px);
+    float: left;
+    padding: 12px;
+    font-size: 13px;
+    background: #FFF;
+    border-radius: 10px;
+    color: #aeaeae;
+    font: 400 14px DroidSans;
+    margin: 5px 8px 5px 8px;
+    overflow: hidden;
+}
+#text-message::-webkit-input-placeholder {
+    color: #aeaeae;
+}
+#send-message {
+    height: 50px;
+    border: 0;
+    width: 50px;
+    cursor: pointer;
+    background: url(images/icons/svg/attachment.svg) no-repeat 50% 50%;
+    opacity: 0.35;
+}
+textarea {
+    resize: none;
+    font-family: Verdana;
+}
+#emojis-btn {
+    width: 50px;
+    height: 50px;
+    background: url(images/icons/svg/mood.svg) no-repeat;
+    opacity: 0.35;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
+.bottom {
+    float: right;
+    width: 100%;
+}
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    border: 4px solid rgba(255, 255, 255, 0);
+    background-clip: content-box;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.emoji {
+    width: 1.6em;
+    height: 1.6em;
+    display: inline-block;
+}
+#text {
+    word-wrap: break-word;
+}
+.modal {
+    width:  calc(100% - 20px);
+    height: auto;
+    position: absolute;
+    z-index: 5;
+    background: #FFF;
+    border-radius: 10px;
+    margin-left: 10px;
+    top: 150px;
+    font-size: 14px;
+    color: #a872d3;
+}
+.modal div {
+    margin: 10px;
+}
+#modal-title {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+#modal-body {
+    height: auto;
+}
+.modal hr {
+    border-style: dashed;
+    width: 260px;
+    border-color: rgba(100, 109, 85, 0.63);
+}
+.modal button {
+    height: 25px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: right;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+.modal input {
+    width: 95%;
+    margin-left: 2.5%;
+    height: 50px;
+    margin-top: 2px;
+    border: 1px #a872d3 solid;
+    padding: 10px;
+    border-radius: 10px;
+}
+#contacts {
+    height: calc(100vh - 100px);
+    margin-top: 50px;
+    overflow: auto;
+    background: transparent;
+    display: none;
+}
+#contacts-form {
+    position: absolute;
+    border: 0;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    color: rgba(63, 69, 54, 0.6);
+    display: none;
+    background: #a872d3;
+}
+#contacts-form #search-contact {
+    width: calc(100% - 67px);
+}
+#contacts-form #search-contact input {
+    width: 100%;
+    height: 40px;
+    margin: 5px 8px 5px 8px;
+    border-radius: 10px;
+    color: #aeaeae;
+    font: 400 14px DroidSans;
+    border: none;
+    padding: 10px 10px 10px;
+    background: #FFF;
+    background-position: left;
+    background-position-x: 10;
+}
+#new-contact-btn {
+    background: url(images/icons/svg/addcontact.svg) no-repeat;
+    opacity: 0.35;
+    width: 50px;
+    height: 50px;
+    background-position: center;
+}
+#contact {
+    width: 90%;
+    height: 50px;
+    background-color: rgba(27, 27, 27, 0.1);
+    border-radius: 10px;
+    color: #646d55;
+    margin-left: 5%;
+    margin-top: 10px
+}
+#contact-name {
+    float: left;
+    font-weight: bold;
+    color: #954ace;
+    font: 400 18px DroidSans;
+    height: 15px;
+    margin-top: 8px;
+}
+#contact-id {
+    color: #a1a1a1;
+    font: 400 13px DroidSans;
+    margin-top: 5px;
+    height: 11px;
+}
+#contact-status {
+    float: left;
+    background: linear-gradient(0deg, #97d85c 0%, #abda80 100%);
+    height: 25px;
+    width: 27px;
+    border-radius: 100%;
+    border-bottom: 2px rgba(0, 0, 0, 0.2) solid;
+    margin: 11px 11px 11px;
+    margin-right: 8px;
+}
+#contact-settings {
+    width: 50px;
+    height: 50px;
+    background: url(images/icons/svg/settings.svg) no-repeat;
+    opacity: 0.35;
+    float: right;
+    background-position: center;
+    cursor: pointer;
+}
+#contact-delete {
+    width: 50px;
+    height: 50px;
+    background: url(images/icons/svg/removenotify.svg) no-repeat;
+    opacity: 0.35;
+    float: right;
+    background-position: center;
+    cursor: pointer;
+}
+#file-progress {
+    height: 27px;
+    width: 100%;
+    border-radius: 13.5px;
+}
+#file-progress::-webkit-progress-value {
+    background: linear-gradient(0deg, #97d85c 0%, #abda80 100%);
+    border-radius: 13.5px;
+}
+#file-progress::-webkit-progress-bar {
+    border-radius: 13.5px;
+    padding: 4px;
+}
+#dataimage {
+    max-width: 240px;
+    max-height: 260px;
+    min-width: 240px;
+    min-height: 260px;
+}
+#inchat {
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    overflow: auto;
+    background: transparent;
+    display: none;
+}
+.black {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+    top: 0;
+}
+#optionsmodal {
+    position: absolute;
+    z-index: 5;
+    height: auto;
+    width: calc(100% - 20px);
+    bottom: 10px;
+    margin-left: 10px;
+    display: none;
+}
+#optionsmodal button {
+    height: 50px;
+    color: #a872d3;
+    font-size: 16px;
+}
+#cancel {
+    width: 100%;
+    border-radius: 10px;
+    background: white;
+}
+#options {
+    height: auto;
+    background: white;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+#option {
+    width: 100%;
+    background: transparent;
+}
+#option-separator {
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+}
+#profile {
+    margin-top: 50px;
+    width: 100%;
+    display: none;
+}
+#profile-avatar {
+    
+    width: 40%;
+    float:left;
+    
+}
+#profile-avatar img {
+    max-height: 100%;
+    max-width: 100%;
+}
+#profile-name {
+    margin: 65px 20px 0px;
+    color: #954ace;
+    font: 400 18px DroidSans;
+}
+#profile-id {
+    margin-left: 20px;
+    color: #a1a1a1;
+    font: 400 13px DroidSans;   
+}
+#profile-desc {
+    color: #a1a1a1;
+    width: calc(100% - 62px);
+    margin-left: 22px;
+    padding-left: 10px;
+    padding: 10px;
+    border-left: #954ace 2px solid;
+    font-size: 14px;
+    word-wrap: break-word
+}
+#profile-title {
+    margin-left: 20px;
+    width: calc(100% - 40px);
+    color: #954ace;
+    font: 400 18px DroidSans;
+    margin-top: 10px;
+}
+#profile-state {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    float: right;
+    margin-right: 20px;
+}
+#profile-form {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background: #a872d3;
+    display: none;
+}
+#profile-settings {
+    background: url(images/icons/svg/settings.svg) no-repeat;
+    width: 100%;
+    height: 50px;
+    background-position: center;
+    opacity: 0.35;
+}
+#edit-profile-desc {
+    width: 100%;
+    height: 50%;
+}
+#inchat-contact {
+    width: 90%;
+    height: 50px;
+    background-color: rgba(27, 27, 27, 0.1);
+    border-radius: 10px;
+    color: #646d55;
+    margin-left: 5%;
+    margin-top: 10px
+}
+#register {
+    margin-top: 50px;
+    padding: 20px;
+    display: none;
+}
+#register-desc {
+    color: #a1a1a1;
+    font: 400 14px DroidSans;
+}
+#register input {
+    margin-top: 10px;
+    height: 50px;
+    width: calc(100% - 51px);
+    border: #a872d3 1px solid;
+    border-radius: 10px;
+    border-left: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding-right: 15px;
+    color: #a1a1a1;
+    font: 400 13.5px DroidSans;
+}
+#register-user-icon {
+    float:left;
+    width: 48px;
+    height: 48px;
+    margin-top: 10px;
+    border: #a872d3 1px solid;
+    border-right: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#register-user-icon svg {
+    fill: #a872d3;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+#register-form {
+    height: 50px;
+    background: #a872d3;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: none;
+}
+#register-next-step {
+    background: url(images/icons/svg/forward.svg) no-repeat;
+    width: 100%;
+    height: 50px;
+    background-position: center;
+    opacity: 0.35;
+}
+#register2 {
+    margin-top: 50px;
+    padding: 20px;
+    display: none;
+}
+#register2 input {
+    margin-top: 10px;
+    height: 50px;
+    width: calc(100% - 49px);
+    border: #a872d3 1px solid;
+    border-radius: 10px;
+    border-left: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding-right: 15px;
+    color: #a1a1a1;
+    font: 400 13.5px DroidSans;
+}
+#register2 textarea {
+    width: 100%;
+    height: 200px;
+    border: #a872d3 1px solid;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    color: #a1a1a1;
+    font: 400 13.5px DroidSans;
+}
+#register2-form {
+    height: 50px;
+    background: #a872d3;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: none;
+}
+#messages-attach {
+    position:absolute;
+    top:-50px;
+    right: 0;
+    width: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top-left-radius: 10px;
+    display: none;
+}
+#messages-attach button {
+    height: 50px;
+    width: 50px;
+    background: rgba(67, 67, 67, 0.7);
+}
+button#attach-youtube {
+    background: url(images/icons/youtube-attach.png) no-repeat;
+    background-size:36px 25.3125px;
+    background-position: center;
+}
+#notifications-area {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0;
+    background: rgba(0, 0, 0, 0.05);
+    display: none;
+}
+#notify-onvideo {
+    width: 50px;
+    height: 50px;
+    background: #e8c400;
+    -webkit-mask-image: url(images/icons/svg/notify.svg);
+    -webkit-mask-size: 24px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+#notifications-list {
+    position:absolute;
+    top: 50;
+    margin-left: 63.5px;
+    height: calc(50% - 50px);
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: none;
+}
+#notify {
+    width: 100%;
+    height: 50px;
+    font: 400 13px DroidSans;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#notify-title {
+    font-size: 15px;
+    float: left;
+    width: calc(100% - 105px);
+    padding-left: 5px;
+    color: #a872d3;
+    font-weight: 800;
+}
+#notify-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    width: calc(100% - 105px);
+    padding-left: 5px;
+    float:left;
+}
+#notify-close {
+    width: 50px;
+    height: 50px;
+    float:right;
+    background: white;
+    -webkit-mask-image: url(images/icons/svg/removenotify.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    opacity: 0.7
+}
+#notify-icon-onvideo {
+    width: 50px;
+    height: 50px;
+    float:left;
+    background: white;
+    -webkit-mask-image: url(images/icons/svg/onvideo.svg);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: 36px;
+}
+#chatvideo {
+    background: #e52d27;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+}
