@@ -1,5 +1,8 @@
 // Language things
-var language = "english_en";
+if (!localStorage.language) {
+    localStorage.language = "english_en";
+}
+var language = localStorage.language;
 var langData = $.ajax({
     "async": false,
     "global": false,
@@ -1101,9 +1104,9 @@ function startApp() {
             toggle("optionsmodal", 0);
             $("#option[data-option-value='0']").on("click", function () {
 
-                toggle("optionsmodal", 1);
-                newModal(3, langData["modal"]["editprofile"]["title"], langData["modal"]["editprofile"]["desc"][0] + '<br> <textarea id="edit-profile-desc">' + desc + '</textarea><br>' + langData["modal"]["editprofile"]["desc"][1] + '<input type="url" id="edit-profile-avatar" value="' + avatar + '"/>', 1);
-                $("#modalOptions #modal-accept").on("click", function () {
+                newModal("editProfileModal", langData["modal"]["editprofile"]["title"], '<textarea id="edit-profile-desc" placeholder="' + langData["register"]["placeholder"][3] + '">' + desc + '</textarea><br><input type="url" id="edit-profile-avatar" value="' + avatar + '" placeholder="' + langData["register"]["placeholder"][2] + '"/>', 1);
+                $("#options").html('<button id="option" data-option-value="0">' + langData["optionsmodal"]["basic"]["ok"] + '</button>');
+                $("#option[data-option-value='0']").on("click", function () {
                     localStorage.desc = $("#edit-profile-desc").val();
                     desc = localStorage.desc;
                     localStorage.avatar = $("#edit-profile-avatar").val();
@@ -1113,19 +1116,33 @@ function startApp() {
                         "background-size": "cover"
                     });
                     $("#profile-desc").html(desc);
-                    $(this).parent().parent().remove();
+                    toggle("optionsmodal", 1);
+                    $(".modal").fadeOut(500);
+                    setTimeout(function () {
+                        $("#editProfileModal").remove();
+                    }, 500);
 
                 });
-                $("#modalOptions #modal-cancel").on("click", function () {
-                    $(this).parent().parent().remove();
+                $("#cancel").on("click", function () {
+                    toggle("optionsmodal", 1);
+                    $(".modal").fadeOut(500);
+                    setTimeout(function () {
+                        $("#editProfileModal").remove();
+                    }, 500);
                 });
-
+                $(".black").on("click", function () {
+                    toggle("optionsmodal", 1);
+                    $(".modal").fadeOut(500);
+                    setTimeout(function () {
+                        $("#editProfileModal").remove();
+                    }, 500);
+                });
             });
             $("#cancel").on("click", function () {
-                return toggle("optionsmodal", 1);
+                toggle("optionsmodal", 1);
             });
             $(".black").on("click", function () {
-                return toggle("optionsmodal", 1);
+                toggle("optionsmodal", 1);
             });
         });
 
@@ -1133,6 +1150,42 @@ function startApp() {
     $("#notifications-area").on("click", function () {
 
         $("#notifications-list").slideToggle();
+
+    });
+    $("#settingsbtn").on("click", function () {
+        toggle("menu", 1);
+        $("#options").html('<button id="option" data-option-value="0">' + langData["optionsmodal"]["basic"]["ok"] + '</button>');
+        toggle("optionsmodal", 0);
+
+        newModal("settingsModal", "Settings", '<select id="language-select" ><option value="spanish_es">Español</option><option value="english_en">English</option></select>', 1);
+        $("option[value='" + language + "']").attr("selected", true);
+        $("#option[data-option-value='0']").on("click", function () {
+
+            var newlang = $("#language-select").val();
+            localStorage.language = newlang;
+            toggle("optionsmodal", 1);
+            $(".modal").fadeOut(500);
+            setTimeout(function () {
+                $("#optionsModal").remove();
+                location.reload();
+            }, 500);
+
+
+        });
+        $("#cancel").on("click", function () {
+            toggle("optionsmodal", 1);
+            $(".modal").fadeOut(500);
+            setTimeout(function () {
+                $("#optionsModal").remove();
+            }, 500);
+        });
+        $(".black").on("click", function () {
+            toggle("optionsmodal", 1);
+            $(".modal").fadeOut(500);
+            setTimeout(function () {
+                $("#optionsModal").remove();
+            }, 500);
+        });
 
     });
 
