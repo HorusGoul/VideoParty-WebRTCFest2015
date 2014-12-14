@@ -78,7 +78,7 @@ if (!localStorage.userid || !localStorage.secretcode || !localStorage.secretid |
 }
 
 function startApp() {
-    
+
     var secretid = localStorage.secretid;
     var userid = localStorage.id;
     var desc = localStorage.desc;
@@ -97,7 +97,7 @@ function startApp() {
         debug: 3
 
     });
-    
+
     // Connection opened. You will can change your password in a future.
     peer.on("open", function (id) {
 
@@ -151,7 +151,7 @@ function startApp() {
     var player = {};
     var notifycount = 0;
     var max;
-    
+
     function conexion(c, p) {
 
         conn = c;
@@ -178,7 +178,7 @@ function startApp() {
             if (data.type == undefined) {
                 data = JSON.parse(data);
             }
-            
+
             // It's the data for propagate the connections, If one of the peers received isn't in your list It will add it.
             if (data.type == 1) {
                 if (data.wot != peer.id) {
@@ -241,7 +241,26 @@ function startApp() {
 
             // Somebody is asking for the video url that we are playing, we make the url and return it with the currently time video.
             if (data.type == 4) {
+                if (profilewaiting == true) {
 
+                    toggle("profile", 1);
+                    toggle("chevronleft", 1);
+                    profilewaiting = false;
+
+                }
+                if (profile == true) {
+
+                    toggle("profile", 1);
+
+                }
+                if (inchat == true) {
+
+                    toggle("inchat", 1);
+
+                }
+                if (contacts == true) {
+                    toggle("contacts", 1);
+                }
                 if (playing == true) {
                     var iframesrc = $("#yt-container iframe").attr("src");
                     var videoid = player.ytplayer.getVideoData().video_id;
@@ -312,7 +331,7 @@ function startApp() {
                 });
 
             }
-            
+
             // Somebody is asking for see your profile, send the data.
             if (data.type == 7) {
 
@@ -330,8 +349,8 @@ function startApp() {
                 }
 
             }
-            
-            
+
+
             // Receive the profile data and if you was waiting for these data, show the profile.
             if (data.type == 8 && profilewaiting == true) {
 
@@ -403,7 +422,7 @@ function startApp() {
                 });
 
             }
-            
+
             // Somebody check If you are watching any video in the app.
             if (data.type == 9) {
 
@@ -423,7 +442,7 @@ function startApp() {
                 }
 
             }
-            
+
             // You sended that you're watching a video, then in his app will appear a notification
             if (data.type == 10) {
 
@@ -432,7 +451,7 @@ function startApp() {
             }
 
         });
-        
+
         // If a connection leave the chat, remove it.
         conn.on("close", function () {
 
@@ -572,10 +591,10 @@ function startApp() {
                     toggle("youtube", 0);
                     toggle("messages-attach", 1);
                     toggle("optionsmodal", 1);
-                $(".modal").fadeOut(500);
-                setTimeout(function () {
-                    $("#youtubeModal").remove();
-                }, 500);
+                    $(".modal").fadeOut(500);
+                    setTimeout(function () {
+                        $("#youtubeModal").remove();
+                    }, 500);
 
                 }, 700);
                 toggle("menu", 1);
@@ -775,8 +794,11 @@ function startApp() {
     // Open the contact list.
     $("#contactsbtn").on("click", function () {
         if (profilewaiting == true) {
+
             toggle("profile", 1);
+            toggle("chevronleft", 1);
             profilewaiting = false;
+
         }
         if (profile == true) {
 
@@ -863,8 +885,11 @@ function startApp() {
 
             }
             if (profilewaiting == true) {
+
                 toggle("profile", 1);
+                toggle("chevronleft", 1);
                 profilewaiting = false;
+
             }
             toggle("menu", 1);
             setTimeout(function () {
@@ -894,8 +919,11 @@ function startApp() {
 
             }
             if (profilewaiting == true) {
+
                 toggle("profile", 1);
+                toggle("chevronleft", 1);
                 profilewaiting = false;
+
             }
 
             toggle("menu", 1);
@@ -908,29 +936,44 @@ function startApp() {
     $("#headertitle button").on("click", function () {
 
         if ($("#headertitle button").attr("class") == "clicable") {
+            showedconns = [];
             for (i = 0; i < conns.length; i++) {
-                if (!conns[i].options._payload || payLoadAll()) {
+                if ((!conns[i].options._payload && !justPayLoad(i)) || payLoadAll() || showedconns.indexOf(conns[i].peer) == -1) {
                     $("#inchat").append('<div id="inchat-contact"><button id="contact-settings"></button><div id="contact-status"></div><div id="contact-name" data-contact-name="' + conns[i].metadata.name + '">' + conns[i].metadata.name + '</div><br><div id="contact-id">' + conns[i].peer + '</div></div>');
+                    showedconns.push(conns[i].peer);
+                    inChatContactSettings();
                 }
-                console.log(payLoadAll());
             }
             toggle("chat", 1);
             setTimeout(function () {
                 toggle("inchat", 0);
             }, 500);
-            inChatContactSettings();
             setInterval(function () {
                 $("* #inchat-contact").remove();
+                showedconns.length = 0;
                 for (i = 0; i < conns.length; i++) {
-                    if (!conns[i].options._payload || payLoadAll()) {
+                    if ((!conns[i].options._payload && !justPayLoad(i)) || payLoadAll() || showedconns.indexOf(conns[i].peer) == -1) {
                         $("#inchat").append('<div id="inchat-contact"><button id="contact-settings"></button><div id="contact-status"></div><div id="contact-name" data-contact-name="' + conns[i].metadata.name + '">' + conns[i].metadata.name + '</div><br><div id="contact-id">' + conns[i].peer + '</div></div>');
+                        showedconns.push(conns[i].peer);
+                        inChatContactSettings();
                     }
-                    inChatContactSettings();
                 }
             }, 5500);
 
+            function justPayLoad(z) {
+                for (x = 0; x < conns.length; x++) {
+                    if (z != i) {
+                        if (conns[x].peer == conns[z].peer) {
+                            return true;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+
             function inChatContactSettings() {
-                $("#contact-settings").on("click", function () {
+                $("* #contact-settings").on("click", function () {
                     contactName = $(this).parent().children("#contact-name").attr("data-contact-name");
                     contactId = $(this).parent().children("#contact-id").html();
                     if (agenda.length > 0) {
@@ -958,7 +1001,7 @@ function startApp() {
                             return toggle("optionsmodal", 1);
                         });
                     } else {
-                        $("#options").html('<button id="option" data-option-value="0">' + langData["optionsmodal"]["basic"]["contactadd"] + '</button><div id="option-separator"></div><button id="option" data-option-value="1">' + langData["optionsmodal"]["basic"]["editprofile"] + '</button>');
+                        $("#options").html('<button id="option" data-option-value="0">' + langData["optionsmodal"]["basic"]["contactadd"] + '</button><div id="option-separator"></div><button id="option" data-option-value="1">' + langData["optionsmodal"]["basic"]["profileview"] + '</button>');
                         toggle("optionsmodal", 0);
                         $("#option[data-option-value='0']").on("click", function () {
                             agenda.push({
@@ -1016,8 +1059,11 @@ function startApp() {
     // Open your profile
     $("#profilebtn").on("click", function () {
         if (profilewaiting == true) {
+
             toggle("profile", 1);
+            toggle("chevronleft", 1);
             profilewaiting = false;
+
         }
         if (contacts == true) {
 
@@ -1349,7 +1395,7 @@ function startApp() {
         }
 
     }
-    
+
     // Go backward function
     function chevronLeftAction() {
 
@@ -1380,7 +1426,7 @@ function startApp() {
         }
 
     }
-    
+
     // Verify connections function
     function verifyConnection(a) {
 
@@ -1406,7 +1452,7 @@ function startApp() {
         }
 
     }
-    
+
     // Check if the user is connected now
     function checkIfAlreadyConnected(x) {
         checkData = [];
@@ -1433,7 +1479,7 @@ function startApp() {
             return true;
         }
     }
-    
+
     // Some connections have a payload property in his object, the function is used to filter data
     function payLoadAll() {
         payLoadStats = [];
@@ -1455,8 +1501,9 @@ function startApp() {
             }
         }
     }
-    
-    
+
+
+
     // Get youtube url parameters
     function getYoutubeURLParams(url) {
         var vars = {};
@@ -1465,13 +1512,13 @@ function startApp() {
         });
         return vars;
     }
-    
+
     // Create youtube player
     function createPlayer() {
         player.ytplayer = new YT.Player("ytplayer");
         player.ytplayer.addEventListener("onStateChange", onPlayerStateChange);
     }
-    
+
     // Create notifications
     function notify(n, data) {
         if (n == "onvideo") {
@@ -1513,7 +1560,7 @@ function startApp() {
 
         }
     }
-    
+
     // Check if the youtube player changed his state.
     function onPlayerStateChange(e) {
         if (e.data == 0) {
@@ -1525,7 +1572,7 @@ function startApp() {
 
 
 }
-    
+
 // Toggle register sections
 function toggleRegister(e, t) {
     if (e == "register") {
